@@ -5,7 +5,7 @@ from database.repositories import AdminRepository, UserRepository
 from database.base import AsyncSessionLocal
 from keyboards.admin import admin_panel, broadcast_confirmation
 from config import Config
-# import pandas as pd
+import pandas as pd
 from aiogram.filters import Command
 
 router = Router()
@@ -54,24 +54,26 @@ async def process_broadcast(message: types.Message, state: FSMContext):
         await state.clear()
 
 
-# @router.message(F.text == "Foydalanuvchilarni eksport qilish")
-# async def export_users(message: types.Message):
-#     async with AsyncSessionLocal() as session:
-#         repo = UserRepository(session)
-#         users = await repo.get_all_users()
-#
-#         data = [{
-#             "ID": user.id,
-#             "Telegram ID": user.telegram_id,
-#             "Ism": user.full_name,
-#             "Telefon": user.phone,
-#             "Ro'yxatdan o'tgan sana": user.created_at
-#         } for user in users]
-#
-#         df = pd.DataFrame(data)
-#         df.to_excel("users.xlsx", index=False)
-#
-#         await message.answer_document(
-#             types.FSInputFile("users.xlsx"),
-#             caption="Foydalanuvchilar ro'yxati"
-#         )
+@router.message(F.text == "Foydalanuvchilarni eksport qilish")
+async def export_users(message: types.Message):
+    async with AsyncSessionLocal() as session:
+        repo = UserRepository(session)
+        users = await repo.get_all_users()
+
+        data = [{
+            "ID": user.id,
+            "Telegram ID": user.telegram_id,
+            "Ism": user.full_name,
+            "Telefon": user.phone,
+            "Telegram Username": user.telegram_username,
+            "Motivatsion xat": user.motivation,
+            "Ro'yxatdan o'tgan sana": user.created_at
+        } for user in users]
+
+        df = pd.DataFrame(data)
+        df.to_excel("users.xlsx", index=False)
+
+        await message.answer_document(
+            types.FSInputFile("users.xlsx"),
+            caption="Foydalanuvchilar ro'yxati"
+        )

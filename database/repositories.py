@@ -12,6 +12,11 @@ class UserRepository:
             select(User).where(User.telegram_id == telegram_id)
         )
         return result.scalars().first()
+    async def get_all_users(self):
+        result = await self.session.execute(
+            select(User)
+        )
+        return result.scalars()
 
     async def create_user(self, telegram_id: int):
         user = User(telegram_id=telegram_id)
@@ -42,3 +47,15 @@ class AdminRepository:
     async def get_all_users(self):
         result = await self.session.execute(select(User))
         return result.scalars().all()
+
+    async def create_admin(self, telegram_id: int):
+        admin = Admin(telegram_id=telegram_id)
+        self.session.add(admin)
+        await self.session.commit()
+        return admin
+
+    async def get_admin(self, telegram_id: int):
+        result = await self.session.execute(
+            select(Admin).where(Admin.telegram_id == telegram_id)
+        )
+        return result.scalars().first()
