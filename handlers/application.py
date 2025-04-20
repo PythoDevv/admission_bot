@@ -109,7 +109,7 @@ async def process_telegram_username(message: types.Message, state: FSMContext):
 
     await state.update_data(telegram_username=message.text)
     await message.answer(
-        "5. Qizil pasportingizni yuklang (PDF) yoki 'Pasport olaman' tugmasini bosing:",
+        "5. Qizil pasportingizni yuklang (PDF hujjat shaklida):",
         reply_markup=passport_choice()
     )
     await state.set_state(ApplicationStates.passport)

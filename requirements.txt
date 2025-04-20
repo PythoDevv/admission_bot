@@ -1,8 +1,8 @@
-aiogram==3.0.0b7
-sqlalchemy[asyncio]==2.0.23
-asyncpg==0.29.0
-alembic==1.12.1
-python-dotenv==1.0.0
-psycopg2-binary==2.9.9
+aiogram
+sqlalchemy[asyncio]
+asyncpg
+alembic
+python-dotenv
+psycopg2-binary
 pandas
-openpyxl==3.1.2  # For Excel export
+openpyxl

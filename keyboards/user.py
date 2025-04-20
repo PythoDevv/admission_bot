@@ -15,8 +15,6 @@ def cancel_keyboard() -> ReplyKeyboardMarkup:
 
 def passport_choice() -> ReplyKeyboardMarkup:
     builder = ReplyKeyboardBuilder()
-    builder.row(KeyboardButton(text="Pasport yuklash"))
-    builder.row(KeyboardButton(text="Pasport olaman"))
     builder.row(KeyboardButton(text="Bekor qilish"))
     return builder.as_markup(resize_keyboard=True)
 

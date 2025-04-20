@@ -6,11 +6,11 @@ from config import Config
 from database.repositories import AdminRepository
 from database.base import AsyncSessionLocal
 
+bot = Bot(token=Config.BOT_TOKEN)
 
 async def main():
     await init_db()
 
-    bot = Bot(token=Config.BOT_TOKEN)
     dp = Dispatcher()
 
     # Include routers

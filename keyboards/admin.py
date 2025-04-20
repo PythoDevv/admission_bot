@@ -4,8 +4,10 @@ from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 def admin_panel() -> ReplyKeyboardMarkup:
     builder = ReplyKeyboardBuilder()
     builder.row(KeyboardButton(text="Barchaga xabar yuborish"))
+    builder.row(KeyboardButton(text="Adminlar ro'yxati"))
     builder.row(KeyboardButton(text="Admin qo'shish"), KeyboardButton(text="Admin o'chirish"))
     builder.row(KeyboardButton(text="Foydalanuvchilarni eksport qilish"))
+    builder.row(KeyboardButton(text="🗂 Hujjatlarni ko‘rish"))
     builder.row(KeyboardButton(text="Admin panelini yopish"))
     return builder.as_markup(resize_keyboard=True)
 
